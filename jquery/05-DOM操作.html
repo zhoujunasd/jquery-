@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<style>
+    .box{
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;;
+    }
+</style>
+<body>
+    <div class="box">
+        <div id='first' class="first">元素</div>
+        <div id='second' class="first">元素二</div>
+    </div>
+    <div class="wrap"></div>
+    <button id='btn'>remove</button>
+    <button id='btn1'>empty</button>
+    <button id='btn2'>detach</button>
+    <button id="fuzhi">复制</button>
+</body>
+<script src="../jquery.js"></script>
+<script>
+    // jquery定义的标签======
+    var h2 = $(`<h2>标题</h2>`)
+
+    // 以父元素为根据
+    // $('.box').append(h2)
+    // h2.appendTo($('.box'))
+
+    // $('.box').prepend(h2)
+    // h2.prependTo($('.box'))
+
+    // 以兄元素为根据
+    // $('#first').before(h2)
+    // h2.insertBefore('#first')
+
+    // $('#first').after(h2)
+    // h2.insertAfter('#first')
+
+    // 包裹元素
+    var div = $(`<div class='wrap' style="background-color:red">新建元素</div>`)
+    // 新建元素包裹选中元素
+    // $('#first').wrap(div)
+    // $('.first').wrap(div)
+    // $('.first').wrapAll(div)
+    // 新建元素包裹选中元素的内容
+    // $('#first').wrapInner(div)
+
+    // 删除元素
+    $('#btn').click(function() {
+        $('.box').remove()
+    })
+    $('#btn1').click(function() {
+        $('.box').empty()
+    })
+    //不删除它附带的资源：例如绑定的事件等
+    $('#btn2').click(function() {
+        let dom =  $('.box').detach()
+        $('.wrap').append(dom)
+    })
+
+    // 修改元素
+    $('#first').replaceWith(h2)
+    h2.replaceAll($('#first'))
+
+    // 复制元素
+    $('.box').click(function() {
+        console.log('事件的复制');
+    })
+    $('#fuzhi').click(function() {
+        // true,将复制元素的关联事件也一起复制
+        var box = $('.box').clone(true)
+        $('body').append(box)
+    })
+</script>
+</html>

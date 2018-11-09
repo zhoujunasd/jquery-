@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    height: 20px;
+    width: 100px;
+    border: 1px solid #ccc;
+}
+</style>
+<body>
+    <input type="text" id='input'>
+    <button id="btn">添加</button>
+    <div class="box">
+        <ul>
+            <li>内容</li>
+        </ul>
+    </div>
+</body>
+<script src="../jquery.js"></script>
+<!-- <script>
+    let btn = document.querySelector('#btn')
+    let input = document.querySelector('#input')
+    let ul = document.querySelector('ul')
+    let lis = document.querySelectorAll('li')
+    btn.onclick = function() {
+        let value = input.value
+        let newLi = document.createElement('li')
+        // newLi.onclick = function() {
+        //     console.log(this.innerText);
+        // }
+        newLi.innerText = value
+        ul.appendChild(newLi)
+        input.value = ''
+    }
+    // lis.forEach(li => {
+    //     li.onclick = function() {
+    //         console.log(this.innerText);
+    //     }
+    // })
+    ul.onclick = function(event) {
+        console.log(event);
+        
+        if(event.target.nodeName == 'LI'){
+            // console.log(this.innerText);
+            console.log(event.target.innerText);
+        }
+    }
+</script> -->
+<script>
+    $('#btn').click(function() {
+        let value = $('#input').val()
+        $('ul').append($(`<li>${value}</li>`))
+        $('#input').val('')
+    })
+    $('.box').on('click', 'li', function() {
+        console.log($(this).text());
+    })
+    // off取消on的事件绑定
+</script>
+</html>

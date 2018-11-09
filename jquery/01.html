@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        height: 300;
+    }
+</style>
+<body>
+    <div class="box" id='box'>
+        <span>span标签</span>
+    </div>
+    <img src="../static/图片.jpg" alt="" width="300" height="300">
+</body>
+<script src="../jquery.js"></script>
+<script>
+    // 入口函数
+    $(function () {
+        $('.box').css({ width: 300, height: 300, backgroundColor: 'skyblue' })
+    })
+    // 原生
+    // window.onload = function() {
+    //     var box = document.querySelector('.box')
+    //     box.style = "height: 400px"
+    //     // 获取所有属性值
+    //     console.dir(getComputedStyle(box).background);
+    // }
+
+    // jquery的DOM操作
+    let htmlStr = `<h2>标题</h2>` 
+    // console.log($('.box').html()); //<span>span标签</span>
+    $('.box').html(htmlStr)
+
+    // console.log($('.box').html()); //<h2>标题</h2>
+    // 原生js
+    var box = document.querySelector('.box')
+    box.innerHTML = htmlStr
+    console.log(box.innerText);
+    console.log(box.textContent);
+    
+    // attr获取以及修改的是标签的属性,对于标签没有的属性不可修改与获取
+    // jQuery一般，一个值是获取，两个值是修改
+    console.log($('.box').attr('id'));
+    $('img').attr({
+        width: 400,
+        height: 400
+    })
+</script>
+</html>

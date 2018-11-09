@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改元素</title>
+</head>
+<style>
+    .wrap{
+        width: 200px;
+        height: 200px;
+    }
+    img{
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<body>
+    <div class="wrap" value=1>
+        <h2>232</h2>
+        <img src="../static/图片.jpg" alt="描述" style="border: 2px solid #000">
+        <input type="text">
+    </div>
+</body>
+<script src="../jquery.js"></script>
+<script>
+    console.log($('img').attr('alt'));
+    $('img').attr({
+        title: 'title属性'
+    })
+    $('img').removeAttr('style')
+    // addClass;hasClass;removeClass;toggleClass
+    $('img').prop({title: 'title属性修改'})
+    console.log($('img').prop('title'));
+    setTimeout(() => {
+        console.log($(':input').prop('value'));
+        console.log($(':input').val());
+    },5000)
+    console.dir($('.wrap').html());
+    console.log($('.wrap').text());
+    
+</script>
+</html>

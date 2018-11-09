@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+
+</style>
+<body>
+    <div class="box">
+        内容 
+    </div>
+   <button id="btn">按钮</button>
+    <input type="text" id="input">
+   <button id="btn1">trigger按钮</button>
+   <button id="btn2">triggerHandler按钮</button>
+</body>
+<script src="../jquery.js"></script>
+<script>
+    // trigger触发自定义事件，用on监听对应事件名
+    // trigger也可以触发内置事件
+
+
+    $('#btn').click(function() {
+        $('.box').trigger('byDiv','传参')
+    })
+    $('.box').on('byDiv', function(event,text) {
+        console.log(event);
+        console.log(text);
+    })
+    $("#btn1").click(function() {
+        $('#input').trigger('focus','参数')
+    })
+    // triggerHandler，触发事件，是用户自定义的事件，
+    // 对于内置事件，会触发事件，但是不会执行相应的事件处理函数，
+    // 例如focus事件，会触发，但是不会聚焦
+    $("#btn2").click(function() {
+        $('#input').triggerHandler('focus',)
+    })
+    $('#input').focus(function() {
+        console.log("focus事件");
+    })
+
+    // 先触发focusin事件，再触发focus事件，
+    // 失去焦点时先触发blur事件，再触发focusout事件
+    $('#input').focusin(function() {
+        console.log("focusin事件");
+    })
+    $('#input').focusout(function() {
+        console.log("focusout事件");
+    })
+    $('#input').blur(function() {
+        console.log("blur事件");
+    })
+
+    // 事件绑定
+    // bind
+    // unbind
+    // one()
+    // error()
+    $('#btn').bind('click', function() {
+        console.log("事件一");
+        
+    })
+    $('#btn').bind('click', function() {
+        console.log("事件二");
+    })
+    setTimeout(() => {
+        $('#btn').unbind('click')
+    },10000)
+
+    $('#btn').on('click',function() {
+        console.log("on事件");
+    })
+</script>
+</html>

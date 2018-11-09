@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    ul{
+        list-style: none
+    }
+    .container{
+        width: 500px;
+        height: 400px;
+        margin: 50px auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .container-top{
+        display: flex;
+    }
+    .container-top li{
+        width: 100px;
+        height: 50px;
+        border-right: 1px solid #000;
+        line-height: 50px;
+        text-align: center;
+        user-select: none;
+        cursor: pointer;  
+    }
+    .container-bottom li{
+        display: none;
+    }
+    .container-top > li.active{
+        background-color: #f00;
+        color: #fff;
+    }
+    .container-bottom > li.active{
+        display: block;
+    }
+</style>
+<body>
+    <div class="container">
+        <ul class="container-top">
+            <li class="active">一</li>
+            <li>二</li>
+            <li>三</li>
+        </ul>
+        <ul class="container-bottom">
+            <li class="active">
+                <p>段落一</p>
+                <p>段落一</p>
+                <p id='spe'>段落二er </p>
+                <p>段落一</p>
+                <p>段落一</p>
+                <p>段落一</p>
+                <p>段落一</p>
+            </li>
+            <li>二额二二</li>
+            <li>三三三三</li>
+        </ul>
+    </div>
+</body>
+<script src="../jquery.js"></script>
+<script>
+    $('.container-top>li').click(function() {
+        // .index()获取索引值
+        let index = $(this).index()
+        $(this).addClass('active').siblings().removeClass('active')
+        $(".container-bottom>li").eq(index).addClass('active').siblings().removeClass('active')
+    })
+
+    // $('#spe').next().css({color: 'skyblue'})
+    // $('#spe').nextAll().css({color: 'skyblue'})
+    // $('#spe').prev().css({color: 'skyblue'})
+    // $('#spe').prevAll().css({color: 'skyblue'})
+    // $('.active').find('p').css({color: 'skyblue'})
+    // end返回上一个选择的父元素组件
+    // $('.active').find('#spe').css({color: 'skyblue'})
+    //     .end().find(":eq(3)").css({color: 'red'})
+    $('#spe').nextAll().addBack().css({color: 'red'})
+</script>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+.wrap{
+    width: 200px;
+    height: 200px;
+    background-color: skyblue;
+}
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+}
+</style>
+<body>
+    input:<input id='name' type="text">
+    textarea:<textarea name="" id="text" cols="30" rows="10"></textarea>
+    <div class="wrap">
+        <div class="box"></div>
+    </div>
+    <form action="">
+        <input type="text" id="input" name="username">
+        <button>提交</button>
+    </form>
+</body>
+<script src="../jquery.js"></script>
+<script>
+    // ui事件
+    // select scroll resize
+    $('#text').select(function() {
+        console.log($(this).val());
+    })
+    $('#name').select(function() {
+        console.log($(this).val());
+    })
+    $(window).resize(function() {
+        // console.log($(this));
+        let clientWidth = document.documentElement.clientWidth
+        console.log(clientWidth);
+    })
+    // 焦点事件
+    let reg = /1[3-8]\d{9}$/
+    $('#name').blur(function() {
+        let $value = $(this).val()
+        let end = reg.test($value)
+        if(end){
+            $('#no').remove()
+            if($('#ok')[0]){ return }
+            $('<div id="ok">ok</div>').appendTo($('body'))
+        } else {
+            $('#ok').remove()
+            if($('#no')[0]){ return }
+            $('<div id="no">no</div>').appendTo($('body'))
+        }
+    })
+    $('#name').focus(function() {
+        console.log('focus事件');
+    })
+    // 鼠标点击事件
+    $('.wrap').click(function() {
+        console.log("click事件");
+    })
+    $('.wrap').dblclick(function() {
+        console.log("dblclick事件");
+    })
+    $('.wrap').mouseup(function() {
+        console.log("mouseup事件");
+    })
+    $('.wrap').mousedown(function() {
+        console.log("mousedown事件");
+    })
+    // 鼠标在元素上的事件
+    $('.wrap').mouseover(function() {
+        console.log("mouseover事件");
+    })
+    $('.wrap').mouseout(function() {
+        console.log("mouseout事件");
+    })
+    $('.wrap').mousemove(function() {
+        console.log("mousemove事件");
+    })
+    // 当鼠标指针穿过元素时
+    $('.wrap').mouseenter(function() {
+        console.log("mouseenter事件");
+    })
+    // 当鼠标指针离开元素时
+    $('.wrap').mouseleave(function() {
+        console.log("mouseleave事件");
+    })
+    // hover事件，可以监听mouseenter与mouseleave事件
+    $('.wrap').hover(function() {
+        $(this).children().slideDown()
+    }, function() {
+        $(this).children().slideUp()
+    })
+    // 键盘事件
+    $('#name').keyup(function(event) {
+        console.log("keyup",event.keyCode);
+    })
+    $('#name').keydown(function() {
+        console.log("keydown",event.keyCode);
+    })
+    $('#name').keypress(function() {
+        console.log("keypress",event.keyCode);
+    })
+    // 表单事件
+    $('form').submit(function(event) {
+        // console.log(event);
+        event.preventDefault()
+    })
+    $('#input').change(function(event) {
+        console.log("change",event.target.value);
+    })
+</script>
+</html>
